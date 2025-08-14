@@ -29,7 +29,15 @@ wait_until "$start_time"
 
 echo "Run prediction with model 1 $(date)"
 # Remember to update "image_srcs" in the ./predict/treehealth_ordinal_watershed_5c.py file
-python -m predict.treehealth_ordinal_watershed_5c --load "./logs_DeLfoRS/train-model-1/model/BestModel.pth" --config-file "./logs_DeLfoRS/train-model-1/config.json" --out-prediction-folder "./predictions/dataset0_model1"
+python -m predict.treehealth_ordinal_watershed_5c --load "<REPLACE WITH THE MODEL PATH>/BestModel.pth" --config-file "<REPLACE WITH MODEL CONFIG>/config.json" --out-prediction-folder "<REPLACE WITH OUTPUT FOLDER>" --image-srcs '{
+    "germany20cm_2022": {
+      "base_path": ".",
+      "image_file_type": ".tif",
+      "image_file_prefix": "",
+      "image_file_postfix": "",
+      "filelist_path": "./deadtrees_images_to_predict.txt"
+    }
+  }'
 
 # Add more commands as needed
 echo "All scheduled commands have been executed."
