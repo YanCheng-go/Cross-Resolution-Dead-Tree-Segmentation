@@ -152,7 +152,20 @@ Prediction
 --------
 For predictions, please run the following command and change the parameters accordingly or go to ./config/treehealth_5c.py and update the parameters in the prediction class named TreeHealthSegmentationPredictionConfig.
 
-```python -m predict.treehealth_ordinal_watershed_5c --load <MODEL PATH> --config-file <MODEL CONFIG PATH> --out-prediction-folder <FOLDER TO SAVE PREDICTIONS>```
+```python -m predict.treehealth_ordinal_watershed_5c --load <MODEL PATH> --config-file <MODEL CONFIG PATH> --out-prediction-folder <FOLDER TO SAVE PREDICTIONS> --image-src <IMAGE SOURCE PARAMETER>```
+
+Example of image source parameter, note the reference data name should stay the same as the config file of the trained model.
+```
+--image-srcs '{
+    "germany20cm_2022": {
+      "base_path": ".",
+      "image_file_type": ".tif",
+      "image_file_prefix": "",
+      "image_file_postfix": "",
+      "filelist_path": "./deadtrees_images_to_predict.txt"
+    }
+  }'
+  ```
 
 Evaluate models with external datasets
 ------------
