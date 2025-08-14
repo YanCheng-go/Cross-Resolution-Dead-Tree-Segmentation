@@ -1,0 +1,65 @@
+name: ssl4eo_delfors  # worked for deic hpc
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+  - balbasty
+dependencies:
+  - python>=3.9, <3.11
+  - pytorch
+  - pytorch-cuda=12.1
+  - torchvision
+  - tqdm
+  - numpy<2.0
+  - numba
+  - einops
+  - wandb
+  - pytorch-lightning
+  - lightning-bolts
+  - torchmetrics
+  - scipy
+  - timm
+  - matplotlib
+  - pandas=1.4.1
+  - lightning
+  - umap-learn
+  - h5py
+  - cupy
+  - pkg-config
+  - libjpeg-turbo
+  - conda-forge::opencv
+  - ipykernel
+  - jupyterlab
+  - gdal=3.2.2
+  - geopandas>=0.10.2
+  - rasterio=1.2.6
+  - shapely=1.8.0
+  - proj=8.0.1
+  - qt=5.12.9
+  - pyproj=3.3.1
+  - torch-distmap
+  - tensorboard=2.8.0
+  - tensorboardx=2.2
+  - scikit-image
+  - scienceplots
+  - docstring_parser
+  - seaborn
+  - ipdb
+  - pytest
+  - lightly
+  - black
+  - contextily
+  - pip
+  - pip:
+      # - geobench
+      - ffcv
+      - kornia
+      # - segmentation-models-pytorch==0.3.4 # 0.3.4 dev. version, pip install -U git+https://github.com/qubvel/segmentation_models.pytorch
+      - opencv-python
+      - alembic
+      - geoalchemy2
+      - geopy
+      - openpyxl
+      - pylint
+      - python-dateutil
