@@ -123,7 +123,7 @@ def config_to_argparser(conf, parser=None, compare_type_with_docs=False):
             var_type = var_type.__args__[0]
         elif var_type == dict or to == dict:
             action = StoreDictKeyPair
-            metavar = "KEY1=VAL1,KEY2=VAL2,..."
+            metavar = "JSON or K=V[,K=V...]"
             var_type = str
         elif to == Union:
             action = parse_optional(var_type)
