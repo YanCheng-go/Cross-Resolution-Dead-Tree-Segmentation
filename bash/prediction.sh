@@ -29,7 +29,8 @@ wait_until "$start_time"
 
 echo "Run prediction with model 1 $(date)"
 # Remember to update "image_srcs" in the ./predict/treehealth_ordinal_watershed_5c.py file
-python -m predict.treehealth_ordinal_watershed_5c --load "<REPLACE WITH THE MODEL PATH>/BestModel.pth" --config-file "<REPLACE WITH MODEL CONFIG>/config.json" --out-prediction-folder "<REPLACE WITH OUTPUT FOLDER>" --image-srcs '{
+python -m predict.treehealth_ordinal_watershed_5c --load "<REPLACE WITH THE MODEL PATH>/BestModel.pth" --config-file "<REPLACE WITH MODEL CONFIG>/config.json" --out-prediction-folder "<REPLACE WITH OUTPUT FOLDER>" \
+--image-srcs '{
     "germany20cm_2022": {
       "base_path": ".",
       "image_file_type": ".tif",

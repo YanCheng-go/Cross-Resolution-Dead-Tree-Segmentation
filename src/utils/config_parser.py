@@ -4,6 +4,7 @@ from typing import List, Union, get_origin, get_args, get_type_hints
 
 import docstring_parser
 import numpy as np
+import json
 
 
 def update_conf_with_parsed_args(conf, pargs):
@@ -59,6 +60,7 @@ def variable_type_same_as_docstring_type(t1, t2_str):
         Whether the variable type is same as the one mentioned in docstring
     """
     t2_str = t2_str.strip()
+    # TODO: Fix the list type checking and maybe handle dicts separately
     if (get_origin(t1) is List or get_origin(t1) is list) and 'list' in t2_str.lower():
         return True
     if get_origin(t1) is not Union:
@@ -123,7 +125,7 @@ def config_to_argparser(conf, parser=None, compare_type_with_docs=False):
             var_type = var_type.__args__[0]
         elif var_type == dict or to == dict:
             action = StoreDictKeyPair
-            metavar = "KEY1=VAL1,KEY2=VAL2,..."
+            metavar = "JSON or K=V[,K=V...]"
             var_type = str
         elif to == Union:
             action = parse_optional(var_type)
@@ -154,7 +156,22 @@ def get_safe_type(val):
 
 class StoreDictKeyPair(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
+        s = values.strip()
         my_dict = {}
+
+        # If it looks like JSON, parse it
+        if s.startswith("{"):
+            try:
+                data = json.loads(s)
+            except json.JSONDecodeError as e:
+                parser.error(f"{option_string}: invalid JSON for {self.dest}: {e}")
+            if not isinstance(data, dict):
+                parser.error(f"{option_string}: JSON must be an object/dict")
+            my_dict.update(data)
+            setattr(namespace, self.dest, my_dict)
+            return
+
+        # Otherwise expect key=value[,key=value...]
         for kv in values.split(","):
             k, v = kv.split("=")
             my_dict[k] = v
