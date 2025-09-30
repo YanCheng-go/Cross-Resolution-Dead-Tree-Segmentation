@@ -1,0 +1,11 @@
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: Yan
+  given-names: Cheng
+- family-names: Stefan
+  given-names: Oehmcke
+orcid: https://orcid.org/0000-0001-8658-4673
+title:YanCheng-go/Cross-Resolution-Dead-Tree-Segmentation: v0.0.1
+version: v0.0.1
+date-released: 2025-09-30
