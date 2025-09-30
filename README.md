@@ -179,3 +179,6 @@ Instructions on fine-tuning are on the way
 ------------
 Please contact chengyan2017@gmail.com for urgent needs in such cases.
 
+Citation
+------------
+Cheng, Y., & Oehmcke, S. (2025). YanCheng-go/Cross-Resolution-Dead-Tree-Segmentation: v0.0.1 (v0.0.1). Zenodo. https://doi.org/10.5281/zenodo.17234915
