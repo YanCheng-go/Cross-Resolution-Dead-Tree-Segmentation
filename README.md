@@ -93,9 +93,9 @@ Project Organization
     │   ├── prep_ortho_germany.py  <- prepare ortho images for Germany
     │   ├── external_evaluation.py  <- evaluate the model performance with external datasets
     │   └── __init__.py
-    ├── env_cuda12.yml <- conda environment file (compatable with cuda12)
+    ├── env_cuda12.yml <- conda environment file (compatible with cuda12)
     ├── test_environment.py
-    ├── config.json <- example configuration file change configuation here or in the treehealther_5c.py in the config folder
+    ├── config.json <- example configuration file, change configuration here or in the treehealther_5c.py in the config folder
     └──README.md
 
 
@@ -103,18 +103,18 @@ Project Organization
 
 Prerequisites
 ------------
-To be able to run through this project, please make sure that you have a GPU and conda and cuda12 installed.
-This project has been tested on GPU RTX3090, H100 on both HPC and local linux system.
+To be able to run through this project, please make sure that you have a GPU, conda, and CUDA 12 installed.
+This project has been tested on the GPU RTX3090, H100 on both the HPC and the local Linux system.
 
 
-Set up environment
+Set up the environment
 ------------
-In terminal, please run the following code and wait for about 5 minutes to install the environment.
+In the terminal, please run the following code and wait for about 5 minutes to install the environment.
 ```conda env create -f env_cuda12.yml --name ssl4eo_delfors```
 
 Activate the environment
 ------------
-In terminal, please run the following code to activate the environment and change the directory to the project folder.
+In the terminal, please run the following code to activate the environment and change the directory to the project folder.
 ```
 conda activate ssl4eo_delfors
 cd Cross-Scale-Dead-Tree-Segmentation
@@ -122,12 +122,12 @@ cd Cross-Scale-Dead-Tree-Segmentation
 
 Configure parameters
 ------------
-In ./config/treehealth_5c.py, you can modify parameters such as number of epochs, patch size, batch size, learning rate, number of workers, and so on. The list of customizable parameters can be found in ./config/base.py. Alternatively, you can assign values to specific parameters using flags in the command in terminal.
+In ./config/treehealth_5c.py, you can modify parameters such as number of epochs, patch size, batch size, learning rate, number of workers, and so on. The list of customizable parameters can be found in ./config/base.py. Alternatively, you can assign values to specific parameters using flags in the command in the terminal.
 There is an example configuration file named config.json in the project folder. You can change the parameters in this file and use it in the command line.
 
 Process training samples
 ------------
-In terminal, please run
+In the terminal, please run
 
 ```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "process-data" --epochs 1 --config-file "./config.json" --processed-dir "./processed_dir/process_3bands" --data-dir "./training_dataset/5c_20240717" --allow_partial_patches True --patch-size 256```
 
@@ -144,13 +144,13 @@ To continue a paused training, please run the following command
 
 Evaluate models and calculate AP metrics
 ------------
-To Evaluate the model performance and calculate IoU, F1, (r)MAE, bias, and AP3070, please the following command and change the parameters accordingly
+To Evaluate the model performance and calculate IoU, F1, (r)MAE, bias, and AP3070, please run the following command and change the parameters accordingly
     
 ```python -m evaluate.treehealth_ordinal_watershed_5c --load <CHANGE TO THE MODEL PATH> --config-file <MODEL CONFIG PATH>```
 
 Prediction
 --------
-For predictions, please run the following command and change the parameters accordingly or go to ./config/treehealth_5c.py and update the parameters in the prediction class named TreeHealthSegmentationPredictionConfig.
+For predictions, please run the following command and change the parameters accordingly, or go to ./config/treehealth_5c.py and update the parameters in the prediction class named TreeHealthSegmentationPredictionConfig.
 
 ```python -m predict.treehealth_ordinal_watershed_5c --load <MODEL PATH> --config-file <MODEL CONFIG PATH> --out-prediction-folder <FOLDER TO SAVE PREDICTIONS> --image-src <IMAGE SOURCE PARAMETER>```
 
@@ -169,4 +169,13 @@ Example of image source parameter, note the reference data name should stay the 
 
 Evaluate models with external datasets
 ------------
-use the code in postprocessing/external_evaluation.py to evaluate the model performance with external datasets.
+Use the code in postprocessing/external_evaluation.py to evaluate the model performance with external datasets.
+
+Pretrained models
+------------
+[Link](https://drive.google.com/drive/folders/1ycIdRRyQGY35-awr2pdAsKZAIALFJVju) to the pretrained model. Download the entire folder and change the <MODEL PATH> and <MODEL CONFIG PATH> in the command lines above for prediction or continuous training. 
+
+Instructions on fine-tuning are on the way
+------------
+Please contact chengyan2017@gmail.com for urgent needs in such cases.
+
