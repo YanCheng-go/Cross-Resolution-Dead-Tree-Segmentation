@@ -129,30 +129,30 @@ Process training samples
 ------------
 In the terminal, please run
 
-```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "process-data" --epochs 1 --config-file "./config.json" --processed-dir "./processed_dir/process_3bands" --data-dir "./training_dataset/5c_20240717" --allow_partial_patches True --patch-size 256```
+```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "process-data" --epochs 1 --config-file "./config.json" --processed-dir "./processed_dir/process_3bands" --data-dir "./training_dataset/5c_20240717" --allow_partial_patches True --patch-size 256 --log-dir <LOG DIR>```
 
 
 Train models
 ------------
 To train a model, please run the following command and change the parameters accordingly or go to ./config/treehealth_5c.py or config.json and update the parameters in the train class named TreeHealthSegmentationConfig.
 
-```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "train-model" --config-file "./config.json" --processed-dir <FOLDER TO SAVE PROCESSED TRAINING DATASETS> --epochs 500 --lr 3e-5```
+```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "train-model" --config-file "./config.json" --processed-dir <FOLDER TO SAVE PROCESSED TRAINING DATASETS> --epochs 500 --lr 3e-5 --log-dir <LOG DIR>```
 
 To continue a paused training, please run the following command
 
-```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "train-model" --config-file "./config.json" --processed-dir <FOLDER TO SAVE PROCESSED TRAINING DATASETS> --epochs 500 --lr 3e-5 --reset-head False --load <CHANGE TO THE MODEL PATH>```
+```python -m train.treehealth_ordinal_watershed_5c --run-dir-suffix "train-model" --config-file "./config.json" --processed-dir <FOLDER TO SAVE PROCESSED TRAINING DATASETS> --epochs 500 --lr 3e-5 --reset-head False --load <CHANGE TO THE MODEL PATH> --log-dir <LOG DIR>```
 
 Evaluate models and calculate AP metrics
 ------------
 To Evaluate the model performance and calculate IoU, F1, (r)MAE, bias, and AP3070, please run the following command and change the parameters accordingly
     
-```python -m evaluate.treehealth_ordinal_watershed_5c --load <CHANGE TO THE MODEL PATH> --config-file <MODEL CONFIG PATH>```
+```python -m evaluate.treehealth_ordinal_watershed_5c --load <CHANGE TO THE MODEL PATH> --config-file <MODEL CONFIG PATH>  --log-dir <LOG DIR>```
 
 Prediction
 --------
 For predictions, please run the following command and change the parameters accordingly, or go to ./config/treehealth_5c.py and update the parameters in the prediction class named TreeHealthSegmentationPredictionConfig.
 
-```python -m predict.treehealth_ordinal_watershed_5c --load <MODEL PATH> --config-file <MODEL CONFIG PATH> --out-prediction-folder <FOLDER TO SAVE PREDICTIONS> --image-src <IMAGE SOURCE PARAMETER>```
+```python -m predict.treehealth_ordinal_watershed_5c --load <MODEL PATH> --config-file <MODEL CONFIG PATH> --out-prediction-folder <FOLDER TO SAVE PREDICTIONS> --image-src <IMAGE SOURCE PARAMETER> --log-dir <LOG DIR>```
 
 Example of image source parameter, note the reference data name should stay the same as the config file of the trained model.
 ```
